@@ -1,19 +1,18 @@
-const quranIndex = require('../storage/resources/quranIndex.json')
-const Sura = require('./suraModel.js')
+const quranIndex = require("../storage/resources/quranIndex.json");
+const Sura = require("./suraModel.js");
 
 function createIndexDetails() {
-    return quranIndex.map((fileName) => {
-        let sura = new Sura(fileName)
-        return {
-            fileName: fileName,
-            numberOfLetters: sura.getNumberOfLetters(),
-            numberOfWords: sura.getNumberOfWords(),
-            numberOfVerses: sura.getNumberOfVerses(),
-            verseNumberToQuran: sura.getVerseNumberToQuran()
-        }
-    })
+  return quranIndex.map((fileName, index) => {
+    let sura = new Sura(fileName);
+    return {
+      index: index,
+      fileName: fileName,
+      numberOfVerses: sura.getNumberOfVerses(),
+      numberOfWords: sura.getNumberOfWords(),
+      numberOfLetters: sura.getNumberOfLetters(),
+      verseNumberToQuran: sura.getVerseNumberToQuran(),
+    };
+  });
 }
 
 module.exports = createIndexDetails();
-
-
