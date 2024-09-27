@@ -5,7 +5,6 @@ function createIndexDetails() {
   return quranIndex.map((fileName, index) => {
     let sura = new Sura(fileName);
     return {
-      index: index,
       fileName: fileName,
       numberOfVerses: sura.getNumberOfVerses(),
       numberOfWords: sura.getNumberOfWords(),
