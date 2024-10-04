@@ -1,0 +1,23 @@
+# Ignore environment variables
+.env
+
+# Ignore deployment scripts
+deploy.sh
+
+# Ignore node_modules (for Node.js projects)
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files
+.vscode/
+.idea/
