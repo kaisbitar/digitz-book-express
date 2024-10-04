@@ -1,18 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const gloablDir = process.cwd();
 
-router.get("/", (req, res) => {
-  res.sendFile("./views/home.html", { root: gloablDir });
-});
+router.post("/services/create", async (req, res, next) => {
+  const FileService = require("../services/fileService.js");
+  const fileService = new FileService();
 
-router.get("/services/run", (req, res, next) => {
-  require("../services/resourcesService.js");
-  // res.send('<a href="/">Home</a>')
-  res.writeHead(302, {
-    Location: "/",
-  });
-  res.end();
+  try {
+    await fileService.createAllFiles();
+    res.status(201).json({ message: "Files created successfully." });
+  } catch (err) {
+    console.error("Error during file creation:", err);
+    next(err);
+  }
 });
 
 module.exports = router;

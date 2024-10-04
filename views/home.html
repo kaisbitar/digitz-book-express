@@ -6,7 +6,14 @@
         <li><a target="_blank" href="/api/quran-index">Quran Index Model</a></li>
         <li><a target="_blank" href="/api/with-tashkeel">Quran with Tashkleel</a></li>
     </ul>
-    <form action="/services/run">
+    <form id="createForm" action="/services/create" method="POST" onsubmit="showLoading()"> 
         <input type="submit" value="Create files" />
     </form>
+    <div id="loadingMessage" style="display:none;">Loading, please wait... approux 3-5 minutes</div> 
+
+    <script>
+        function showLoading() {
+            document.getElementById("loadingMessage").style.display = "block"; 
+        }
+    </script>
 </html>

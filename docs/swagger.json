@@ -1,0 +1,95 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Digitz Books API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/services/create": {
+            "post": {
+                "summary": "Create files",
+                "description": "Creates files for the API.",
+                "responses": {
+                    "201": {
+                        "description": "Files created successfully."
+                    },
+                    "500": {
+                        "description": "Error during file creation."
+                    }
+                }
+            }
+        },
+        "/api/quran-model": {
+            "get": {
+                "summary": "Get Quran model",
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "/api/quran-index": {
+            "get": {
+                "summary": "Get Quran index",
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "/api/with-tashkeel": {
+            "get": {
+                "summary": "Get Quran with Tashkeel",
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "/api/view/sura-details/{fileName}": {
+            "get": {
+                "summary": "Get details of a specific Sura",
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "path",
+                        "required": true,
+                        "description": "Name of the Sura file",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "/api/scrape/{word}": {
+            "get": {
+                "summary": "Scrape a website to get a word meaning",
+                "parameters": [
+                    {
+                        "name": "word",
+                        "in": "path",
+                        "required": true,
+                        "description": "Website to scrape",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        }
+    }
+}
