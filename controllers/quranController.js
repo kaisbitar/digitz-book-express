@@ -27,6 +27,7 @@ exports.getSuraDetails = (req, res) => {
 };
 
 exports.getScraper = async (req, res) => {
+  console.log("Scraper called");
   const word = req.params.word;
   const url = process.env.SCRAPE_URL_FORMAT.replace("{word}", word);
   try {

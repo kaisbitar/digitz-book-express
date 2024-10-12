@@ -1,22 +1,24 @@
 require("dotenv").config();
 
-const puppeteer = require("puppeteer");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 const scrapeWebsite = async (url) => {
   try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(url);
-    const extractedData = await page.evaluate((cssSelector) => {
-      return Array.from(document.querySelectorAll(cssSelector)).map((element) =>
-        element.textContent.trim()
-      );
-    }, process.env.SCRAPE_WEBSITE_CSS_TARGET);
+    console.log("Starting scrape process for URL:", url);
 
-    await browser.close();
+    const response = await axios.get(url);
+    const html = response.data;
+    const $ = cheerio.load(html);
+
+    const extractedData = $(process.env.SCRAPE_WEBSITE_CSS_TARGET)
+      .map((_, element) => $(element).text().trim())
+      .get();
+
     return extractedData;
   } catch (error) {
-    console.error("Error fetching the website:", error);
+    console.error("Error in scrapeWebsite function:", error);
+    throw error;
   }
 };
 
