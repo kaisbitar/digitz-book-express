@@ -53,6 +53,7 @@ module.exports = function Sanatize(sentence) {
     يجءرون: "يجرون",
     جءروا: "جروا",
     قرءان: "قرآن",
+    تءخر: "تخر",
   };
 
   return sentence
