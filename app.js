@@ -1,12 +1,18 @@
 const express = require("express");
 const apiRoutes = require("./routes/api");
-const webRoutes = require("./routes/services");
+const serviceRoutes = require("./routes/services");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./docs/swagger.json");
 const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Add error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  res.status(500).json({ error: err.message });
+});
 
 app.use(
   cors({
@@ -18,14 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use(apiRoutes);
-app.use(webRoutes);
-app.use((req, res) => {
-  res.status(404).send("Route doesn't exist");
-});
+// Add logging to see which routes are being registered
+console.log("Registering routes...");
+app.use("/", apiRoutes);
+app.use("/", serviceRoutes);
 
-app.post("/services/create", (req, res) => {
-  res.status(201).json({ message: "Files created successfully." });
+app.use((req, res) => {
+  console.log(`404: ${req.method} ${req.url}`);
+  res.status(404).send("Route doesn't exist");
 });
 
 app.listen(PORT, () => {

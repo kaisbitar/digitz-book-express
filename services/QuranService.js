@@ -1,5 +1,8 @@
 const allSurasDataRaw = require("../storage/resources/allSurasDataRaw.json");
+const allVersesWithTashkeel = require("../storage/resources/allVersesWithTashkeel.json");
 const textSanitizer = require("./sanitizeService.js");
+const sanitizeWithTashkeel =
+  require("./sanitizeService.js").sanitizeWithTashkeel;
 
 class QuranService {
   static getAllQuran() {
@@ -7,7 +10,10 @@ class QuranService {
       fileName: `${this.convertToThreeDigits(verse.suraNumber)}${verse.sura}`,
       verseIndex: verse.verseNumber,
       verseNumberToQuran: verse.verseNumberToQuran,
-      verseText: textSanitizer(verse.verseText),
+      // verseText: textSanitizer(verse.verseText),
+      verseText: sanitizeWithTashkeel(
+        allVersesWithTashkeel[verse.verseNumberToQuran - 1]
+      ),
     }));
   }
 

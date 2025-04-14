@@ -63,16 +63,16 @@ class FileService {
     } catch (err) {
       console.error("Error Quran file:", err);
     }
-    try {
-      await this.createIndexFile();
-    } catch (err) {
-      console.error("Error creating index file:", err);
-    }
-    try {
-      await this.createWordsDetails();
-    } catch (err) {
-      console.error("Error creating words details:", err);
-    }
+    // try {
+    //   await this.createIndexFile();
+    // } catch (err) {
+    //   console.error("Error creating index file:", err);
+    // }
+    // try {
+    //   await this.createWordsDetails();
+    // } catch (err) {
+    //   console.error("Error creating words details:", err);
+    // }
   }
 }
 
