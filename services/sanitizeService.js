@@ -95,12 +95,3 @@ module.exports.sanitizeWithTashkeel = function (sentence) {
     })
     .join(" ");
 };
-
-// Test the function
-const sanitizeWithTashkeel = require("./sanitizeService").sanitizeWithTashkeel;
-const allVersesWithTashkeel = require("../storage/resources/allVersesWithTashkeel.json");
-
-console.log(
-  sanitizeWithTashkeel(allVersesWithTashkeel[960 - 1]),
-  "فَلَنَسْءَلَنَّ الَّذِينَ أُرْسِلَ إِلَيْهِمْ وَلَنَسْءَلَنَّ الْمُرْسَلِينَ"
-);

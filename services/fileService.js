@@ -3,6 +3,7 @@ const path = require("path");
 const QuranService = require("./QuranService.js");
 const Sura = require("./suraService.js");
 const IndexService = require("./indexService.js");
+const { getRootsAndDerivatives } = require("./wordsRootsService");
 
 class FileService {
   constructor() {
@@ -53,6 +54,15 @@ class FileService {
       } catch (err) {
         console.error(`Error creating words details for ${fileName}:`, err);
       }
+    }
+  }
+
+  async createRootsAndDerivativesFile() {
+    try {
+      const data = await getRootsAndDerivatives();
+      await this.writeContent("rootsAndDerivatives.json", data);
+    } catch (err) {
+      console.error("Error creating Roots And Derivatives file:", err);
     }
   }
 

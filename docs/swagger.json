@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Digitz Books API",
+        "title": "Digitz Book API",
         "version": "1.0.0"
     },
     "paths": {
@@ -15,6 +15,20 @@
                     },
                     "500": {
                         "description": "Error during file creation."
+                    }
+                }
+            }
+        },
+        "/services/create-word-roots": {
+            "post": {
+                "summary": "Create wordRoots.json file",
+                "description": "Creates the wordRoots.json deliverable file from the processed word roots data.",
+                "responses": {
+                    "201": {
+                        "description": "wordRoots.json created successfully."
+                    },
+                    "500": {
+                        "description": "Error during wordRoots file creation."
                     }
                 }
             }
@@ -87,6 +101,44 @@
                 "responses": {
                     "200": {
                         "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "/api/roots-and-derivatives": {
+            "get": {
+                "summary": "Get roots and their derivatives",
+                "description": "Returns the roots and their derivatives as JSON.",
+                "responses": {
+                    "200": {
+                        "description": "A JSON file with roots and their derivatives.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "word": {
+                                                "type": "string",
+                                                "description": "The root word"
+                                            },
+                                            "derivatives": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "description": "List of derivatives found in the verses"
+                                            },
+                                            "count": {
+                                                "type": "integer",
+                                                "description": "Number of occurrences of the root word"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
