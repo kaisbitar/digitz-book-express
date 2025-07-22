@@ -26,6 +26,10 @@ exports.getSuraDetails = (req, res) => {
   );
 };
 
+exports.getRoots = (req, res) => {
+  res.sendFile("./storage/deliverables/roots.json", { root: gloablDir });
+};
+
 exports.getScraper = async (req, res) => {
   console.log("Scraper called");
   const word = req.params.word;

@@ -90,6 +90,37 @@
                     }
                 }
             }
+        },
+        "/api/roots": {
+            "get": {
+                "summary": "Get Quran roots",
+                "description": "Returns the list of Quran roots and their associated words.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response. Returns an array of root objects.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "root": {
+                                                "type": "string",
+                                                "description": "The root word."
+                                            },
+                                            "words": {
+                                                "type": "string",
+                                                "description": "Words associated with the root."
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
