@@ -25,7 +25,7 @@ exports.getSuraDetails = (req, res) => {
     { root: gloablDir }
   );
 };
-//
+//Changelog
 exports.getRoots = (req, res) => {
   res.sendFile("./storage/deliverables/roots.json", { root: gloablDir });
 };
